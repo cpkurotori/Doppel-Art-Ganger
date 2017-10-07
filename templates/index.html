@@ -15,16 +15,16 @@
     </header>
     <form id="form" action="upload_artwork" method="POST" enctype="multipart/form-data">
         <input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera"><br>
-        <button type="submit" value="FIND MY ART DOPPLEGANGER">FIND MY ART DOPPLEGANGER</button>
+        <button type="submit" value="FIND MY ART DOPPLEGANGER">Upload Artwork</button>
     </form>
 
     
     
     <footer>
         <article id="socialFooter">
-                <a href="https://www.instagram.com/" target="_blank"> <img src="images/Instagram.png" alt="instagram icon" title="Open my instagram in new window"/></a>
+                <a href="https://www.instagram.com/" target="_blank"> <img src="{{ url_for('static', filename='assets/images/Instagram.png') }}" alt="instagram icon" title="Open my instagram in new window"/></a>
 
-                <a href="https://www.facebook.com/" target="_blank"> <img src="images/facebook.png" alt="facebook icon" title="Open my facebook in new window"/></a>   
+                <a href="https://www.facebook.com/" target="_blank"> <img src="{{ url_for('static', filename='assets/images/facebook.png') }}" alt="facebook icon" title="Open my facebook in new window"/></a>   
             </article>
             <article>
                 <a id="copyright">Copyright &copy; Breeze Nail &amp; Spa 2017</a>

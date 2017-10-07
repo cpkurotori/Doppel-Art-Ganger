@@ -2,8 +2,8 @@ from flask import Flask, request
 import os, webbrowser
 from mongo import *
 from db import DB_NAME, DB_URI
-
-
+from flask import render_template
+from mongo import *
 
 app = Flask(__name__)
 
@@ -16,5 +16,11 @@ db.init_app(app)
 
 # upload specs
 UPLOAD_FOLDER = 'temp/'
-ALLOWED_EXTENSTIONS = set(['png', 'jpg', 'jpeg', 'bmp'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'bmp'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# secret key
+app.secret_key = 'XqRByek'
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

@@ -1,5 +1,5 @@
 face_art/
 *.pyc
-db.py
 temp/
 art-face/
+db.py

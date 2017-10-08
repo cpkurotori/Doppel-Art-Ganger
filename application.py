@@ -47,7 +47,7 @@ def find_dopple():
         try:
             image_name = Art.query.filter(Art.file_face_id == find_similar(file)).first().file_name
             image = gridfs.GridFS(mongo).get_last_version(image_name)
-            
+
 
         except:
             flash('Bad request.')

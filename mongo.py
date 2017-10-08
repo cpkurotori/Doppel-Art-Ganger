@@ -22,8 +22,10 @@ class Art(db.Document):
         self.file_name = file_name
         self.file_date = file_date
         try:
+            import copy
+            f = copy.deepcopy(file.stream).read()
             self.file_face_id = self.upload_face(file_name, file)
-            self.file_data_id = gridfs.GridFS(mongo).put(file.stream.read())
+            self.file_data_id = gridfs.GridFS(mongo).put(f)
             self.save()
         except:
             raise 

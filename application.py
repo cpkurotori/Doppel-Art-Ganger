@@ -13,6 +13,7 @@ def upload_artwork():
             flash('No file part')
             return redirect(url_for('index'))
         file = request.files['photo-file']
+        print(file)
         if file.filename == '':
             print('No file selected')
             flash('No selected file')
@@ -21,9 +22,16 @@ def upload_artwork():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             artwork = Art()
+            print(artwork)
+            print(filename)
             with open('temp/'+filename, 'rb') as f:
                 artwork.init(file_name=filename, file_data=f.read(), file_date=datetime.now())
-                return 'Artwork Uploaded'
+                #except: 
+                #    return 'ERROR! STOP AND TELL CAMERON'
+                print(filename)
+                print(type(filename))
+                os.remove('temp/'+filename)    
+                return redirect(url_for('index'))
 
 @app.route('/test')
 def test():

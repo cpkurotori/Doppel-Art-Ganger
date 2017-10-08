@@ -23,7 +23,7 @@ class Art(db.Document):
             self.file_data_id = gridfs.GridFS(mongo).put(file_data)
             self.save()
         except:
-            pass
+            raise 
 
     def upload_face(self, filename):
         CF.Key.set(SUBSCRIPTION_KEY)
@@ -49,7 +49,7 @@ class Art(db.Document):
         except Exception as e:
             print(e)
             flash("Upload failed. Please try again. If you keep receiving this error, please try another photo.")
-        return None
+        raise
 
 
 

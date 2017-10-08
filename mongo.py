@@ -10,7 +10,6 @@ from pymongo import database, MongoClient
 mongo = database.Database(MongoClient(host=DB_URI), name=DB_NAME)
 db = MongoAlchemy()
 
-UPLOAD_FOLDER = 'tmp/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'bmp'])
 
 
@@ -53,11 +52,16 @@ class Art(db.Document):
         except Exception as e:
             print(e)
             flash("Upload failed. Please try again. If you keep receiving this error, please try another photo.")
+
+
+
+def find_similar(file):
+    faces = detect(file.stream)
+    if len(faces) != 1:
+        flash('Make sure the photo only has 1 subject in frame.')
         raise
+    return CF.face.find_similar(faces[0]['face_id'], face_list_id=CF.face_list.get('artwork')['face_list_id'], max_candidates_return=1)
 
 
-
-
-
-
-
+def get_photo(face_id):
+    "This is going to return the photo information of the given face_id"

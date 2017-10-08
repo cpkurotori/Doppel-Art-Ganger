@@ -1,0 +1,74 @@
+body
+{
+    margin: 0;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 100%;
+    font-weight: 300;
+    background: url(faces.png) no-repeat absolute center center;  
+    background-position: center;
+    background-color: yellow;
+}
+
+h1
+{
+    font-family: 30em/1 'Fredericka the Great', cursive;
+    font-weight: 400;
+    text-align: center;
+    padding-bottom: 30px;
+    color: #000;
+    padding-top: .5em;
+    text-shadow: black 0px 0px 1em;
+}
+
+h2
+{
+    font-family: 5em 'Fredericka the Great', cursive;
+    font-weight: 400;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: #000;
+    text-shadow: black 0px 0px 1em;
+}
+
+section#welcome
+{
+    background: url(girls.gif) no-repeat fixed center center;
+    background-color: yellow;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+}
+
+
+section#welcome header
+{
+    width: 100%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    
+}
+
+section#welcome h1
+{
+    padding-bottom: 10px;
+    color: black;
+    font-size: 6em;
+    text-shadow: yellow 0px 0px 5px;
+}
+
+section#welcome h2
+{
+    padding-bottom: 10px;
+    color: black;
+}
+
+form
+{
+    
+    height: 80vh;
+    width: 100vh;
+    background-size: cover;
+}

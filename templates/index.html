@@ -1,18 +1,17 @@
 <!doctype html>
 <html>
 <head>
-    <title>FACEFART</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <title>FACE ART</title>
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Rochester" rel="stylesheet">
+    <link href="stylesheet.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
-    <header>
-        <h1>TINA IS AMAZING</h1>
-        <p>Yo just checking</p>
-    </header>
+    <section id="welcome">
+        <h1>DOPPEL-ART-GANGER</h1>
+        <h2>Your Face is ART</h2>
+    </section>
+
     <form id="form" action="upload_artwork" method="POST" enctype="multipart/form-data">
         <input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera"><br>
         <button type="submit" value="FIND MY ART DOPPLEGANGER">Upload Artwork</button>
@@ -21,13 +20,8 @@
     
     
     <footer>
-        <article id="socialFooter">
-                <a href="https://www.instagram.com/" target="_blank"> <img src="{{ url_for('static', filename='assets/images/Instagram.png') }}" alt="instagram icon" title="Open my instagram in new window"/></a>
-
-                <a href="https://www.facebook.com/" target="_blank"> <img src="{{ url_for('static', filename='assets/images/facebook.png') }}" alt="facebook icon" title="Open my facebook in new window"/></a>   
-            </article>
-            <article>
-                <a id="copyright">Copyright &copy; Breeze Nail &amp; Spa 2017</a>
+        <article>
+            <a id="copyright">CALHACKS BEARS 2017</a>
         </article>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

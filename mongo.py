@@ -10,25 +10,29 @@ from pymongo import database, MongoClient
 mongo = database.Database(MongoClient(host=DB_URI), name=DB_NAME)
 db = MongoAlchemy()
 
+UPLOAD_FOLDER = 'tmp/'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'bmp'])
+
+
 class Art(db.Document):
     file_name = db.StringField()
     file_data_id = db.ObjectIdField()
     file_date = db.DateTimeField()
     file_face_id = db.StringField()
-    def init(self, file_name, file_data, file_date):
+    def init(self, file_name, file, file_date):
         self.file_name = file_name
         self.file_date = file_date
         try:
-            self.file_face_id = self.upload_face(file_name)
-            self.file_data_id = gridfs.GridFS(mongo).put(file_data)
+            self.file_face_id = self.upload_face(file_name, file)
+            self.file_data_id = gridfs.GridFS(mongo).put(file.stream.read())
             self.save()
         except:
             raise 
 
-    def upload_face(self, filename):
+    def upload_face(self, filename, file):
         CF.Key.set(SUBSCRIPTION_KEY)
         # try:
-        #     result = CF.face.detect('temp/'+filename)
+        #     result = CF.face.detect('tmp/'+filename)
         #     print(result)
         #     print(type(result))
         # except:
@@ -42,7 +46,7 @@ class Art(db.Document):
         #     width, top, height, left = str(result[0]['faceRectangle']['width']), str(result[0]['faceRectangle']['top']), str(result[0]['faceRectangle']['height']), str(result[0]['faceRectangle']['left'])
         #try:
         try:
-            return CF.face_list.add_face('temp/'+filename, 'artwork')['persistedFaceId']
+            return CF.face_list.add_face(file.stream.read(), 'artwork')['persistedFaceId']
         except CF.CognitiveFaceException:
             print("Bad request adding face to list")
             flash("Make sure the photo only has 1 subject in frame.")

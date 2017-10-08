@@ -20,18 +20,16 @@ def upload_artwork():
             return redirect(url_for('index'))
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # file.create_file(filename)
+            #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             artwork = Art()
-            print(artwork)
-            print(filename)
-            with open('temp/'+filename, 'rb') as f:
-                artwork.init(file_name=filename, file_data=f.read(), file_date=datetime.now())
-                #except: 
-                #    return 'ERROR! STOP AND TELL CAMERON'
-                print(filename)
-                print(type(filename))
-                os.remove('temp/'+filename)    
-                return redirect(url_for('index'))
+            # with open(app.config['UPLOAD_FOLDER']+filename, 'rb') as f:
+
+            artwork.init(file_name=filename, file=file, file_date=datetime.now())
+            #except: 
+            #    return 'ERROR! STOP AND TELL CAMERON'
+            # os.remove(app.config['UPLOAD_FOLDER']+filename)    
+            return redirect(url_for('index'))
 
 @app.route('/test')
 def test():
@@ -39,9 +37,4 @@ def test():
     test.init("NAME", "DATA", datetime.now())
     return 'Test Complete'
 
-PORT = os.getenv('PORT', 8080)
-IP = os.getenv('IP', '0.0.0.0')
-
 app.debug = True
-
-app.run(host=IP, port=int(PORT))

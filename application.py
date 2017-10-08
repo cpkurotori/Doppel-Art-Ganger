@@ -36,7 +36,8 @@ def upload_artwork():
             return 'ERROR! STOP AND TELL CAMERON'  
     return redirect(url_for('index'))
 
-@app.route('/find_dopplartganger', methods=['GET', 'POST'])
+
+@app.route('/find_doppelartganger', methods=['GET', 'POST'])
 def find_dopple():
     if request.method == 'POST':
         try:
@@ -44,7 +45,9 @@ def find_dopple():
         except:
             return redirect(url_for('index'))
         try:
-            return find_similar(file)
+            image_name = Art.query.filter(Art.file_face_id == find_similar(file)).first().file_name
+            image = gridfs.GridFS(mongo).get_last_version(image_name)
+
         except:
             flash('Bad request.')
             return redirect(url_for('index'))

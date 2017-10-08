@@ -3,30 +3,44 @@
 <head>
     <title>FACE ART</title>
     <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Rochester" rel="stylesheet">
-    <link href="stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='assets/css/stylesheet.css') }}" rel="stylesheet" type="text/css">
 
 </head>
 <body>
     <section id="welcome">
-        <h1>DOPPEL-ART-GANGER</h1>
-        <h2>Your Face is ART</h2>
+        <div class="middle">
+            <div style="height: 20vh" >
+                <h1>DOPPEL-ART-GANGER</h1>
+            </div>
+            <div>
+                <h2>Your Face is ART</h2>
+            </div>
+        </div>
     </section>
-
-    <form id="form" action="upload_artwork" method="POST" enctype="multipart/form-data">
-        <input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera"><br>
-        <button type="submit" value="FIND MY ART DOPPLEGANGER">Upload Artwork</button>
-    </form>
-
-    
-    
-    <footer>
-        <article>
-            <a id="copyright">CALHACKS BEARS 2017</a>
-        </article>
-    </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <section id="form-section">
+        <img src="{{ url_for('static', filename='assets/images/faces.png') }}" width=100% style="position: absolute"/>
+        <div style="position:absolute; text-align: center; width: 100%">
+            <form id="form" method="POST" enctype="multipart/form-data" style='position: relative; top:0px' action=''>
+                <div class="center">
+                    <table>
+                        <tr>
+                            <td>
+                            <input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <button type="button" onclick="document.getElementById('form').action='upload_artwork'; document.getElementById('form').submit()" value="ADD TO OUR COLLECTION">Add To Our Collection</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <button type="button" onclick="document.getElementById('form').action='find_doppelartganger';
+                                document.getElementById('form').submit()" value="FIND MY ART DOPPLEGANGER">Find My Doppel-Art-Ganger</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </section>
 </body>
 </html>

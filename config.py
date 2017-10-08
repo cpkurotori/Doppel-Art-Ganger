@@ -3,7 +3,7 @@ import os#, logging
 # import cloudstorage as gcs
 # from google.appengine.api import app_identity
 from mongo import *
-from db import DB_NAME, DB_URI
+from db import *
 from flask import render_template
 from mongo import *
 
@@ -17,13 +17,16 @@ app.config['MONGOALCHEMY_CONNECTION_STRING'] = DB_URI
 db.init_app(app)
 
 # upload specs
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # secret key
 app.secret_key = 'XqRByek'
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+FS = FileService(account_name=ACCOUNT_NAME, account_key=ACCOUNT_KEY)
 
 # def get(self):
 #   bucket_name = os.environ.get('BUCKET_NAME',

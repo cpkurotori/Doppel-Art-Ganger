@@ -5,3 +5,4 @@ Werkzeug==0.12.2
 pymongo==2.8.1
 google-api-python-client
 gunicorn==19.7.1
+azure-storage-file==0.37.0

@@ -46,7 +46,7 @@ class Art(db.Document):
         #     width, top, height, left = str(result[0]['faceRectangle']['width']), str(result[0]['faceRectangle']['top']), str(result[0]['faceRectangle']['height']), str(result[0]['faceRectangle']['left'])
         #try:
         try:
-            return CF.face_list.add_face(file.stream.read(), 'artwork')['persistedFaceId']
+            return CF.face_list.add_face(file.stream, 'artwork')['persistedFaceId']
         except CF.CognitiveFaceException:
             print("Bad request adding face to list")
             flash("Make sure the photo only has 1 subject in frame.")

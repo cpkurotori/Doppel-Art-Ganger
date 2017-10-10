@@ -5,7 +5,7 @@
     <link rel="shortcut icon" href="{{url_for('static', filename = 'assest/images/favicon.png')}}" >
     <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Rochester" rel="stylesheet">
     <link href="{{ url_for('static', filename='assets/css/stylesheet.css') }}" rel="stylesheet" type="text/css">
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
     <section id="welcome">
@@ -24,70 +24,72 @@
             <form id="form" method="POST" enctype="multipart/form-data" style="position: relative; top:0px" action="">
                 <div class="center">
                     <video autoplay style="display:none"></video>
-                    <script>
-                        var captured = false;
-                      (function() {
-                        'use strict';
-                        var video = document.querySelector('video')
-                          , canvas;
-
-                        /**
-                         *  generates a still frame image from the stream in the <video>
-                         *  appends the image to the <body>
-                         */
-                        function takeSnapshot() {
-                          captured = true;
-                          var img = document.querySelector('img') || document.createElement('img');
-                          var context;
-                          var width = video.offsetWidth
-                            , height = video.offsetHeight;
-
-                          video.pause()
-                          canvas = canvas || document.createElement('canvas');
-                          canvas.width = width;
-                          canvas.height = height;
-                          canvas.id = 'webcam'
-
-                          context = canvas.getContext('2d');
-                          context.drawImage(video, 0, 0, width, height);
-                        }
-                        // use MediaDevices API
-                        // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
-                        if (navigator.mediaDevices) {
-                          // access the web cam
-                          navigator.mediaDevices.getUserMedia({video: true})
-                          // permission granted:
-                            .then(function(stream) {
-                              video.src = window.URL.createObjectURL(stream);
-                              video.addEventListener('click', takeSnapshot);
-                            })
-                            // permission denied:
-                            .catch(function(error) {
-                              document.body.textContent = 'Could not access the camera. Error: ' + error.name;
-                            });
-                        };
-                    })();
-                    </script>
                     <table>
                         <tr>
                             <td>
-                            <input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera" onclick="document.getElementById('"required>
+                            <input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera" onclick=""required>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <button id="add" type="button" onclick="document.getElementById('form').action='upload_artwork'; document.getElementById('form').submit()" value="ADD TO OUR COLLECTION" disabled>Add To Our Collection</button></td>
+                            <button id="add" type="button" onclick="$('#form')[0].action='upload_artwork'; $('#form')[0].submit()" value="ADD TO OUR COLLECTION" disabled>Add To Our Collection</button></td>
                         </tr>
                         <tr>
                             <td>
-                            <button id="find" type="button" onclick="document.getElementById('form').action='find_doppelartganger';
-                                document.getElementById('form').submit()" value="FIND MY ART DOPPLEGANGER" disabled>Find My Doppel-Art-Ganger</button></td>
+                            <button id="find" type="button" onclick="$('#form')[0].action='find_doppelartganger';
+                                $('#form')[0].submit()" value="FIND MY ART DOPPLEGANGER" disabled>Find My Doppel-Art-Ganger</button></td>
                         </tr>
                     </table>
                 </div>
             </form>
         </div>
     </section>
+    <script>
+        var captured = false;
+      (function() {
+        'use strict';
+        var video = document.querySelector('video')
+          , canvas;
+
+        /**
+         *  generates a still frame image from the stream in the <video>
+         *  appends the image to the <body>
+         */
+        function takeSnapshot() {
+          captured = true;
+          $("#add").prop('disabled', false);
+          $("#find").prop('disabled', false);
+          var img = document.querySelector('img') || document.createElement('img');
+          var context;
+          var width = video.offsetWidth
+            , height = video.offsetHeight;
+
+          video.pause()
+          canvas = canvas || document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          canvas.id = 'webcam'
+
+          context = canvas.getContext('2d');
+          context.drawImage(video, 0, 0, width, height);
+        }
+        // use MediaDevices API
+        // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+        if (navigator.mediaDevices) {
+          // access the web cam
+          navigator.mediaDevices.getUserMedia({video: true})
+          // permission granted:
+            .then(function(stream) {
+              video.src = window.URL.createObjectURL(stream);
+              video.addEventListener('click', takeSnapshot);
+            })
+            // permission denied:
+            .catch(function(error) {
+            });
+        };
+
+    })();
+    </script>
     <script>
         function hasGetUserMedia() {
             return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
@@ -99,9 +101,18 @@
         }
 
         function using_upload(){
-            return document.getElementById('photo-file') != '';
+            return $("#photo-file")[0].value != '';
         }
-        
+
+        $("#photo-file").change(function(){
+          if ($("#photo-file")[0].value != '' || captured){
+          $("#add").prop('disabled', false);
+          $("#find").prop('disabled', false);
+        }else{
+          $("#add").prop('disabled', true);
+          $("#find").prop('disabled', true);
+        }
+ });
     </script>
 </body>
 </html>

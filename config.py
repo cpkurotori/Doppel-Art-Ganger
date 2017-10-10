@@ -1,11 +1,10 @@
 from flask import Flask, request, send_file
-import os#, logging
+import os, gstorage, time#, logging
 # import cloudstorage as gcs
 # from google.appengine.api import app_identity
 from mongo import *
 from db import *
 from flask import render_template
-from mongo import *
 
 app = Flask(__name__)
 
@@ -22,11 +21,21 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # secret key
 app.secret_key = 'XqRByek'
 
+CF.Key.set(SUBSCRIPTION_KEY)
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 FS = FileService(account_name=ACCOUNT_NAME, account_key=ACCOUNT_KEY)
+
+storage_client, bucket = gstorage.init(STORAGE_NAME)
+tmp_storage, tmp_bucket = gstorage.init(TMP_STORAGE_NAME)
+
+
+# iterate through the bucket uploading faces to the microsoft faces list and adding them to the DB
+
+
 
 # def get(self):
 #   bucket_name = os.environ.get('BUCKET_NAME',

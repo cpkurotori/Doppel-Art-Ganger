@@ -22,25 +22,85 @@
         <div style="position:absolute; text-align: center; width: 100%">
             <form id="form" method="POST" enctype="multipart/form-data" style="position: relative; top:0px" action="">
                 <div class="center">
+                    <video autoplay style="display:none"></video>
+                    <script>
+                        var captured = false;
+                      (function() {
+                        'use strict';
+                        var video = document.querySelector('video')
+                          , canvas;
+
+                        /**
+                         *  generates a still frame image from the stream in the <video>
+                         *  appends the image to the <body>
+                         */
+                        function takeSnapshot() {
+                          captured = true;
+                          var img = document.querySelector('img') || document.createElement('img');
+                          var context;
+                          var width = video.offsetWidth
+                            , height = video.offsetHeight;
+
+                          video.pause()
+                          canvas = canvas || document.createElement('canvas');
+                          canvas.width = width;
+                          canvas.height = height;
+                          canvas.id = 'webcam'
+
+                          context = canvas.getContext('2d');
+                          context.drawImage(video, 0, 0, width, height);
+                        }
+                        // use MediaDevices API
+                        // docs: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+                        if (navigator.mediaDevices) {
+                          // access the web cam
+                          navigator.mediaDevices.getUserMedia({video: true})
+                          // permission granted:
+                            .then(function(stream) {
+                              video.src = window.URL.createObjectURL(stream);
+                              video.addEventListener('click', takeSnapshot);
+                            })
+                            // permission denied:
+                            .catch(function(error) {
+                              document.body.textContent = 'Could not access the camera. Error: ' + error.name;
+                            });
+                        };
+                    })();
+                    </script>
                     <table>
                         <tr>
                             <td>
-                            <input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera">
+                            <input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera" onclick="document.getElementById('"required>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <button type="button" onclick="document.getElementById('form').action='upload_artwork'; document.getElementById('form').submit()" value="ADD TO OUR COLLECTION">Add To Our Collection</button></td>
+                            <button id="add" type="button" onclick="document.getElementById('form').action='upload_artwork'; document.getElementById('form').submit()" value="ADD TO OUR COLLECTION" disabled>Add To Our Collection</button></td>
                         </tr>
                         <tr>
                             <td>
-                            <button type="button" onclick="document.getElementById('form').action='find_doppelartganger';
-                                document.getElementById('form').submit()" value="FIND MY ART DOPPLEGANGER">Find My Doppel-Art-Ganger</button></td>
+                            <button id="find" type="button" onclick="document.getElementById('form').action='find_doppelartganger';
+                                document.getElementById('form').submit()" value="FIND MY ART DOPPLEGANGER" disabled>Find My Doppel-Art-Ganger</button></td>
                         </tr>
                     </table>
                 </div>
             </form>
         </div>
     </section>
+    <script>
+        function hasGetUserMedia() {
+            return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+        }
+
+        if (hasGetUserMedia()){
+        }else{
+            alert('getUserMedia() is not supported in your browser')
+        }
+
+        function using_upload(){
+            return document.getElementById('photo-file') != '';
+        }
+        
+    </script>
 </body>
 </html>

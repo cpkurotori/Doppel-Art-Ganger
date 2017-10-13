@@ -27,7 +27,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-FS = FileService(account_name=ACCOUNT_NAME, account_key=ACCOUNT_KEY)
+#FS = FileService(account_name=ACCOUNT_NAME, account_key=ACCOUNT_KEY)
 
 storage_client, bucket = gstorage.init(STORAGE_NAME)
 tmp_storage, tmp_bucket = gstorage.init(TMP_STORAGE_NAME)

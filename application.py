@@ -30,7 +30,7 @@ def retrieve_photo(request, bucket, tmp=False):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('new.html')
 
 @app.route('/upload_artwork', methods=['GET', 'POST'])
 def upload_artwork():

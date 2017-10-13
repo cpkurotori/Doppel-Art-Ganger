@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<title>Doppel-ART-Ganger</title>
+	<meta http-equiv="description" content="Your face is ART. See which one." />
+	<meta http-equiv="keywords" content="Microsoft API, HTML, CSS, JavaScript, Python, Flask, MongoDB, Art, Face, Similarities" />
+	<meta http-equiv="author" content="Cameron Kurotori, Tina Taleb, Victor Sanchez" />
+	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/bootstrap.min.css') }}"/>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="shortcut icon" href="{{url_for('static', filename = 'assest/images/favicon.png')}}" >
+	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Rochester" rel="stylesheet">
+	<style type="text/css" media="">	
+		h1, h2 {
+			font-family: 'Fredericka the Great', cursive;}
+	</style>
+</head>
+<body>
+	<div class="jumbotron text-center">
+		<h1>Doppel-ART-Ganger</h1>
+		<h2>Your face is ART. See which one.</h2>
+	</div>
+	<section class="text-center center">
+		<form id='form'  action="" method="post" enctype="multipart/form-data">	
+			<table class="table">
+				<tr>
+					<td>
+						<input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera" required>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="add" type="submit"  onclick="$('#form')[0].action='upload_artwork'" class="btn-default">Add To Our Art Database</button>
+						<button id="find"  type="submit" onclick="$('#form')[0].action='find_doppelartganger'" class="btn-primary">Find My Dopple-Art-Ganger</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</section>
+</body>
+</html>
+
+
+

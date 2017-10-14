@@ -9,35 +9,46 @@
 	<meta http-equiv="author" content="Cameron Kurotori, Tina Taleb, Victor Sanchez" />
 	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/bootstrap.min.css') }}"/>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<link rel="shortcut icon" href="{{url_for('static', filename = 'assest/images/favicon.png')}}" >
+	<link rel="shortcut icon" href="{{url_for('static', filename = 'assets/images/favicon.png')}}" >
 	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Rochester" rel="stylesheet">
-	<style type="text/css" media="">	
-		h1, h2 {
-			font-family: 'Fredericka the Great', cursive;}
-	</style>
+	<link rel="stylesheet" href="{{ url_for('static', filename = 'assets/css/new.css')}}"/>
 </head>
 <body>
-	<div class="jumbotron text-center">
-		<h1>Doppel-ART-Ganger</h1>
-		<h2>Your face is ART. See which one.</h2>
+	<div id="home" class="parallax" >
+		<div class="text-vcenter">
+			<h1>Doppel-ART-Ganger</h1>
+			<h2>Your face is ART. See which one.</h2>
+		</div>
 	</div>
-	<section class="text-center center">
-		<form id='form'  action="" method="post" enctype="multipart/form-data">	
-			<table class="table">
-				<tr>
-					<td>
-						<input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera" required>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button id="add" type="submit"  onclick="$('#form')[0].action='upload_artwork'" class="btn-default">Add To Our Art Database</button>
-						<button id="find"  type="submit" onclick="$('#form')[0].action='find_doppelartganger'" class="btn-primary">Find My Dopple-Art-Ganger</button>
-					</td>
-				</tr>
-			</table>
-		</form>
-	</section>
+	<div id="about" class="div-center">
+		<div class="text-vcenter">
+			<p>We have put together a database of paintings and artworks from throughout history. Upload your own photo see which one most resembles you! Simply click "Upload File", select a photo (that has a SINGULAR, DISTINCT face and click "Find My Doppel-ART-Ganger". Our program will look through our database and show you the piece of art that you look the most like! If you're feeling helpful, upload pieces of artwork to our database and help us find closer matches for people!</p>
+		</div>
+	</div>
+	<div id="upload" class="parallax">
+		<div class="text-vcenter">
+			<form id='form'	action="" method="post" enctype="multipart/form-data">	
+				<table class="table">
+					<tr>
+						<td><img id="preview" src="#"/></td>
+					</tr>
+					<tr>
+						<td>
+							<input name="photo-file" id="photo-file" type="file" accept="image/*;capture=camera" required>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button id="add" type="submit"	onclick="$('#form')[0].action='upload_artwork';"  class="btn-default">Add To Our Art Database</button>
+							<button id="find"	type="submit" onclick="$('#form')[0].action='find_doppelartganger'" class="btn-primary">Find My Dopple-Art-Ganger</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<script src=" {{ url_for('static', filename='assets/js/new.js')  }} " charset="utf-8">
+	</script>
 </body>
 </html>
 

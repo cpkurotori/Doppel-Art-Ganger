@@ -1,0 +1,64 @@
+h1, h2 {
+	font-family: 'Fredericka the Great', cursive;}
+
+.parallax{
+	position: relative;
+	width: 100%;
+  	display: table;
+}
+
+#home {
+	background: url(../images/girls.gif) no-repeat center center fixed;
+	height: 100vh;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+
+#about {
+	width: 100%;
+	display: table;
+	padding: 50px;
+	background-color: black;
+	color: white;
+}
+
+
+#upload {
+	background: url(../images/faces.png) no-repeat center center fixed;
+	min-height: 900px;
+	-webkit-background-size:100% auto;
+    -moz-background-size:  100% auto;
+	-o-background-size:100% auto;
+	background-size: 100% auto;
+	background-color: rgba(0,100,200,.7);
+}
+
+#preview {
+	max-height: 300px;
+}
+
+
+
+.pad-section {
+	padding: 50px 0;
+}
+
+.text-vcenter {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	}
+
+
+.text-vcenter h1 {
+	font-size:4.5em;
+	margin: 0;
+	padding: 0;
+}
+
+.text-vcenter h1, h2 {
+	text-shadow: yellow 0px 0px 9px;
+}
